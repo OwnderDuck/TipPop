@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "TipPop",
+  "version": "1.0.0",
+  "description": "TipPop - Quick, Friendly Tips Right on Your Webpage",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_icon": {
+      "16": "TipPop16.png",
+      "48": "TipPop48.png",
+      "128": "TipPop128.png"
+    },
+    "default_title": "导入 Tips 文件"
+
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "16": "TipPop16.png",
+    "48": "TipPop48.png",
+    "128": "TipPop128.png"
+  }
+}
