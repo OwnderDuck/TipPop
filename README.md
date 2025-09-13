@@ -1,2 +1,2 @@
 # TipPop
-TipPop – Quick, Friendly Tips Right on Your Webpage
+TipPop - Quick, Friendly Tips Right on Your Webpage
