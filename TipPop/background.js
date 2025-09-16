@@ -1,11 +1,8 @@
 // Copyright (c) 2025 OwnderDuck
 // SPDX-License-Identifier: MIT
 chrome.action.onClicked.addListener(() => {
-    chrome.windows.create({
-      url: chrome.runtime.getURL("filepicker.html"),
-      type: "popup",
-      width: 400,
-      height: 200
-    });
+  chrome.tabs.create({
+    url: chrome.runtime.getURL("filepicker.html"),
+    active: true // 打开后立即切换到该标签页
   });
-  
+});

@@ -29,7 +29,7 @@ chrome.storage.local.get('tips', (data) => {
     });
 
     const inner = document.createElement('span');
-    inner.textContent = "Tip：" + randomTip;
+    inner.textContent = "Tip: " + randomTip;
     inner.style.display = 'inline-block';
     inner.style.transform = 'skewX(15deg)';
     inner.style.WebkitFontSmoothing = 'antialiased';

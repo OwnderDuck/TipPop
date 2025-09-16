@@ -1,14 +1,120 @@
-<!--Copyright (c) 2025 OwnderDuck-->
-<!--SPDX-License-Identifier: MIT-->
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
 <meta charset="UTF-8">
-<title>choose tips flie</title>
+<title>Manage Tips</title>
+<style>
+  :root {
+    --brand-color: #4CAF50;
+    --brand-hover: #45a049;
+    --bg-light: #f9f9f9;
+    --border-radius: 6px;
+  }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    padding: 1.5em;
+    max-width: 600px;
+    margin: auto;
+    color: #333;
+  }
+  h2, h3 {
+    color: var(--brand-color);
+    margin-bottom: 0.5em;
+  }
+  .card {
+    background: white;
+    padding: 1em;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-bottom: 1em;
+  }
+  input[type="file"], input[type="text"] {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    width: calc(100% - 1em);
+    margin-bottom: 0.5em;
+  }
+  button {
+    background: var(--brand-color);
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  button:hover {
+    background: var(--brand-hover);
+  }
+  small {
+    display: block;
+    color: #666;
+    margin-bottom: 0.5em;
+    font-size: 0.85em;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    background: var(--bg-light);
+    padding: 0.5em;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+    transition: transform 0.2s ease;
+  }
+  li:hover {
+    transform: translateX(3px);
+  }
+  li button {
+    background: #e74c3c;
+    padding: 0.3em 0.6em;
+    font-size: 0.8em;
+  }
+  #status {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--brand-color);
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: var(--border-radius);
+    display: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+</style>
 </head>
 <body>
-  <h3>Please choose tips flie</h3>
-  <input type="file" id="fileInput" accept=".txt">
-  <script src="filepicker.js"></script>
+  <h2>Tips Manager</h2>
+  
+  <div class="card">
+    <h3>Import from File</h3>
+    <input type="file" id="fileInput" accept=".txt">
+    <small>Format: one tip per line, no empty lines.<br>Example:<br>Tip 1<br>Tip 2<br>Tip 3</small>
+    
+  </div>
+  
+  <div class="card">
+    <h3>Add Tip Manually</h3>
+    <input type="text" id="manualInput" placeholder="Enter a new tip">
+    <button id="addBtn">Add</button>
+  </div>
+  
+  <div class="card">
+    <h3>Current Tips</h3>
+    <button id="exportBtn">Export Tips</button>
+    <button id="clearBtn">Clear All</button>
+    <ul id="tipsList"></ul>
+  </div>
+  
+  <div id="status"></div>
+
+  <script src="manager.js"></script>
 </body>
 </html>
