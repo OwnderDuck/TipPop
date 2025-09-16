@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 chrome.storage.local.get('tips', (data) => {
-    let tips = data.tips || ["Welcome to TipPop! Please click the extension icon to import tips.txt"];
+    let tips = data.tips || ["Welcome to TipPop! Please click the extension icon to import tips"];
     const randomTip = tips[Math.floor(Math.random() * tips.length)];
 
     const badge = document.createElement('div');
