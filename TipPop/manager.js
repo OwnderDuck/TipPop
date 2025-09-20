@@ -1,3 +1,57 @@
+// Copyright (c) 2025 OwnderDuck
+// SPDX-License-Identifier: MIT
+const tips = [
+  "Welcome to TipPop!",
+  `FROG fell from the 3rd floor ${(new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate())-new Date(2025,4/*月份从0开始*/,18))/(1000*60*60*24)} days ago.`
+];
+
+const randomTip = tips[Math.floor(Math.random() * tips.length)];
+
+const badge = document.createElement('div');
+Object.assign(badge.style, {
+  position: 'fixed',
+  bottom: '10px',
+  left: '10px',
+  background: 'rgba(0, 0, 0, 0.8)',
+  color: '#fff',
+  padding: '6px 16px',
+  fontSize: '14px',
+  fontFamily: "Noto Sans CJK SC, Source Han Sans SC, sans-serif",
+  zIndex: 2147483647,
+  pointerEvents: 'none',
+  whiteSpace: 'nowrap',
+  transform: 'translateX(-120%)',
+  transition: 'transform 0.4s ease',
+  boxShadow: '0 2px 6px rgba(0,0,0,0)',
+  WebkitFontSmoothing: 'antialiased',
+  MozOsxFontSmoothing: 'grayscale',
+  textRendering: 'geometricPrecision',
+  willChange: 'transform',
+  contain: 'layout paint style'
+});
+
+const inner = document.createElement('span');
+inner.textContent = "Tip: " + randomTip;
+inner.style.display = 'inline-block';
+inner.style.transform = 'skewX(15deg)';
+inner.style.WebkitFontSmoothing = 'antialiased';
+inner.style.MozOsxFontSmoothing = 'grayscale';
+inner.style.textRendering = 'optimizeLegibility';
+badge.appendChild(inner);
+
+document.documentElement.appendChild(badge);
+
+setTimeout(() => {
+  badge.style.transform = 'translateX(0) skewX(-15deg)';
+}, 100);
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+      badge.style.transform = 'translateX(-120%) skewX(-15deg)';
+      setTimeout(() => badge.remove(), 400);
+  }, 1145);
+});
+
 const fileInput = document.getElementById('fileInput');
 const tipsList = document.getElementById('tipsList');
 const status = document.getElementById('status');

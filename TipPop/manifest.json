@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TipPop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "TipPop - Quick, Friendly Tips Right on Your Webpage",
   "permissions": [
     "storage"
@@ -12,7 +12,7 @@
       "48": "TipPop48.png",
       "128": "TipPop128.png"
     },
-    "default_title": "导入 Tips 文件"
+    "default_title": "Quick, Friendly Tips Right on Your Webpage"
 
   },
   "background": {

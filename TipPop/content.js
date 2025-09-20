@@ -34,7 +34,7 @@ chrome.storage.local.get('tips', (data) => {
     inner.style.transform = 'skewX(15deg)';
     inner.style.WebkitFontSmoothing = 'antialiased';
     inner.style.MozOsxFontSmoothing = 'grayscale';
-    inner.style.textRendering = 'geometricPrecision';
+    inner.style.textRendering = 'optimizeLegibility';//'geometricPrecision';
     badge.appendChild(inner);
 
     document.documentElement.appendChild(badge);
