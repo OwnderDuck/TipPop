@@ -18,7 +18,7 @@ chrome.storage.local.get('tips', (data) => {
         zIndex: 2147483647,
         pointerEvents: 'none',
         whiteSpace: 'nowrap',
-        transform: 'translateX(-120%)',
+        transform: 'translateX(-120%) skewX(-15deg)',
         transition: 'transform 0.4s ease',
         boxShadow: '0 2px 6px rgba(0,0,0,0)',
         WebkitFontSmoothing: 'antialiased',

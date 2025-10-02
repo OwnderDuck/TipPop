@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 const tips = [
   "Welcome to TipPop!",
+
   `FROG fell from the 3rd floor ${(new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate())-new Date(2025,4/*月份从0开始*/,18))/(1000*60*60*24)} days ago.`
 ];
 
@@ -20,7 +21,7 @@ Object.assign(badge.style, {
   zIndex: 2147483647,
   pointerEvents: 'none',
   whiteSpace: 'nowrap',
-  transform: 'translateX(-120%)',
+  transform: 'translateX(-120%) skewX(-15deg)',
   transition: 'transform 0.4s ease',
   boxShadow: '0 2px 6px rgba(0,0,0,0)',
   WebkitFontSmoothing: 'antialiased',

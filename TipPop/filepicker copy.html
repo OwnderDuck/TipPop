@@ -6,39 +6,24 @@
   <title>Manage Tips</title>
   <style>
     :root {
-      --brand-color: #ffffff;
-      --brand-hover: #7e7e7e;
-      --bg-light: #2a2a2a;
-      /* 卡片背景 */
-      --bg-dark: #121212;
-      /* 页面背景 */
-      --text-color: #7e7e7e;
-      /* 主文字颜色 */
-      --border-color: #444;
-      /* 分隔线颜色 */
+      --brand-color: #4CAF50;
+      --brand-hover: #45a049;
+      --bg-light: #f9f9f9;
     }
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: var(--bg-dark);
+      background: #f0f2f5;
       padding: 2vh;
       max-width: 80%;
       margin: auto;
-      color: var(--text-color);
-    }
-
-    h1,
-    h2,
-    h3 {
-      color: var(--brand-color);
-      margin-bottom: 0.5em;
+      color: #333;
     }
 
     .container {
       display: flex;
       gap: 7.8%;
     }
-
     .title-bar {
       display: flex;
       align-items: center;
@@ -52,24 +37,14 @@
       /* 高度跟随文字大小 */
     }
 
+
     .card {
-      background: var(--bg-light);
+      background: white;
       padding: 2%;
-      box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.05);
       margin-bottom: 2vh;
       transform: skewX(-15deg);
       overflow: hidden;
-      color: var(--text-color);
-    }
-
-    .list-column {
-      flex: 1;
-      /* 左边占 1 份 */
-    }
-
-    .actions-column {
-      flex: 2;
-      /* 右边占 2 份 */
     }
 
     ul {
@@ -81,59 +56,49 @@
       height: 70vh;
       overflow-y: auto;
       overflow-x: hidden;
-      
     }
 
     li {
-      background: #1e1e1e;
+      transform: skewX(15deg);
+      background: var(--bg-light);
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 0;
+      /* 去掉 margin-bottom，避免双重间距 */
       padding: 1vh;
       border-bottom: 0.1vh solid var(--border-color);
       transition: transform 0.2s ease;
-      color: var(--text-color);
     }
 
     li button {
       background: #e74c3c;
       font-size: 0.8em;
+      transform: skewX(-15deg);
       padding: 0.5vh 1vh;
-      color: #fff;
+      /* 按钮大小随屏幕缩放 */
     }
 
-    input[type="file"] {
-      display: none;
-      /* 隐藏原生控件 */
+    h1,
+    h2,
+    h3 {
+      color: var(--brand-color);
+      margin-bottom: 0.5em;
     }
 
-    .file-label {
-      background: var(--brand-color);
-      color: #444;
-      border: none;
-      padding: 1vh 2vh;
-      cursor: pointer;
-    }
-
-    .file-label:hover {
-      background: var(--brand-hover);
-    }
-
-
+    input[type="file"],
     input[type="text"] {
       padding: 1vh;
-      border: 0.2vh solid var(--border-color);
-      background: #1e1e1e;
-      color: var(--text-color);
+      border: 0.2vh solid #ccc;
       width: 100%;
+      /* 直接 100% */
       margin-bottom: 1vh;
       box-sizing: border-box;
     }
 
     button {
       background: var(--brand-color);
-      color: #444;
+      color: white;
       border: none;
       padding: 1vh 2vh;
       cursor: pointer;
@@ -145,7 +110,7 @@
 
     small {
       display: block;
-      color: #aaa;
+      color: #666;
       margin-bottom: 1vh;
       font-size: 0.85em;
     }
@@ -159,7 +124,7 @@
       color: white;
       padding: 1vh 2vh;
       display: none;
-      box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.2);
     }
 
     footer {
@@ -167,9 +132,9 @@
       padding: 2vh;
       text-align: center;
       font-size: 0.85em;
-      color: #aaa;
-      background: #1e1e1e;
-      box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.6);
+      color: #666;
+      background: #fff;
+      box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.05);
     }
 
     footer a {
@@ -208,11 +173,9 @@
 
         <!-- 导入/导出 -->
         <div class="action-buttons">
-          <label for="fileInput" class="file-label">Import</label>
-          <input type="file" id="fileInput">
           <button id="exportBtn">Export Tips</button>
           <button id="clearBtn">Clear All</button>
-
+          <input type="file" id="fileInput" accept=".txt">
           <small>Format: one tip per line, no empty lines.</small>
         </div>
 
