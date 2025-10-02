@@ -82,6 +82,9 @@ function showStatus(msg) {
   status.textContent = msg;
   setTimeout(() => status.textContent = '', 2000);
 }
+document.getElementById('importBtn').addEventListener('click', () => {
+  document.getElementById('fileInput').click();
+});
 
 // 文件导入
 fileInput.addEventListener('change', async (e) => {
@@ -137,3 +140,15 @@ manualInput.addEventListener('keydown', (e) => {
   }
 });
 loadTips();
+const toggleSwitch = document.getElementById('toggleSwitch');
+
+// 初始化时读取状态
+chrome.storage.local.get({ enabled: true }, ({ enabled }) => {
+  toggleSwitch.checked = enabled;
+});
+
+// 切换时更新存储
+toggleSwitch.addEventListener('change', async () => {
+  await chrome.storage.local.set({ enabled: toggleSwitch.checked });
+  showStatus(toggleSwitch.checked ? 'Tips enabled' : 'Tips disabled');
+});
