@@ -70,6 +70,7 @@ async function loadTips() {
     delBtn.onclick = async () => {
       tips.splice(index, 1);
       await chrome.storage.local.set({ tips });
+      chrome.runtime.sendMessage({ action: "syncTips", tips});
       loadTips();
       showStatus(`Deleted tip #${index + 1}`);
     };
@@ -77,6 +78,13 @@ async function loadTips() {
     tipsList.appendChild(li);
   });
 }
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.action === "tipsUpdatedFromCloud") {
+    console.log("收到云端更新通知，刷新 UI");
+    loadTips();
+    showStatus("Tips 已从云端更新");
+  }
+});
 
 function showStatus(msg) {
   status.textContent = msg;
@@ -95,6 +103,7 @@ fileInput.addEventListener('change', async (e) => {
   const { tips = [] } = await chrome.storage.local.get('tips');
   const merged = tips.concat(newTips);
   await chrome.storage.local.set({ tips: merged });
+  chrome.runtime.sendMessage({ action: "syncTips", tips: merged });
   loadTips();
   showStatus(`Imported ${newTips.length} tips`);
 });
@@ -102,6 +111,7 @@ fileInput.addEventListener('change', async (e) => {
 // 清空
 document.getElementById('clearBtn').onclick = async () => {
   await chrome.storage.local.set({ tips: [] });
+  chrome.runtime.sendMessage({ action: "syncTips", tips: [] });
   loadTips();
   showStatus('Cleared all tips');
 };
@@ -120,21 +130,29 @@ document.getElementById('exportBtn').onclick = async () => {
 
 // 手动添加
 addBtn.onclick = async () => {
-  const newTip = manualInput.value.trim();
-  if (!newTip) {
-    showStatus('Please enter a tip');
+  const raw = manualInput.value.trim();
+  if (!raw) {
+    showStatus('Please enter at least one tip');
     return;
   }
+
+  // 按行分割，去掉空行
+  const newTips = raw.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+
   const { tips = [] } = await chrome.storage.local.get('tips');
-  tips.push(newTip);
-  await chrome.storage.local.set({ tips });
-  manualInput.value = '';
+  const merged = tips.concat(newTips);
+
+  await chrome.storage.local.set({ tips: merged });
+  chrome.runtime.sendMessage({ action: "syncTips", tips: merged });
+
+  manualInput.value = ''; // 清空输入框
   loadTips();
-  showStatus('Tip added');
+  showStatus(`Added ${newTips.length} tip(s)`);
 };
+
 // 手动输入按 Enter 也触发添加
 manualInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
+  if (e.key === 'Enter' && e.ctrlKey) {
     e.preventDefault(); // 防止表单提交或换行
     addBtn.click();     // 直接调用按钮的点击逻辑
   }

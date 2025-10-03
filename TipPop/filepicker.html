@@ -231,11 +231,30 @@
     }
 
     /* 开启状态 */
-    
+
 
     .switch.skew-square input:checked+.slider:before {
       transform: translate(calc(var(--size) * 1), -50%);
       /* 向右移动一个正方形宽度 */
+    }
+
+    #manualInput {
+      width: 100%;
+      min-height: 80px;
+      resize: vertical;
+      /* 允许用户拖动调整高度 */
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      line-height: 1.5;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    #manualInput:focus {
+      border-color: #4a90e2;
+      box-shadow: 0 0 4px rgba(74, 144, 226, 0.4);
+      outline: none;
     }
   </style>
 </head>
@@ -284,7 +303,7 @@
 
         <!-- 新增 -->
         <div class="add-tip">
-          <input type="text" id="manualInput" placeholder="Enter a new tip">
+          <textarea id="manualInput" rows="4" placeholder="Enter new tips"></textarea>
           <button id="addBtn">Add Tip</button>
           <small>Example: "Always test your code before deploying"</small>
         </div>
