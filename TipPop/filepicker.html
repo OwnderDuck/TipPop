@@ -38,6 +38,7 @@
     .container {
       display: flex;
       gap: 7.8%;
+      align-items: stretch;
     }
 
     .title-bar {
@@ -61,16 +62,19 @@
       transform: skewX(-15deg);
       overflow: hidden;
       color: var(--text-color);
+      align-items: stretch;
+      grid-template-columns: 1fr 2fr;
+      flex: 1;
     }
 
     .list-column {
       flex: 1;
-      /* 左边占 1 份 */
+      flex-direction: column;
     }
 
     .actions-column {
       flex: 2;
-      /* 右边占 2 份 */
+      flex-direction: column;
     }
 
     ul {
@@ -240,20 +244,28 @@
 
     #manualInput {
       width: 100%;
-      min-height: 80px;
+      min-height: 40vh;
+      /* 高度更贴合整体布局 */
       resize: vertical;
       /* 允许用户拖动调整高度 */
-      padding: 8px 12px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      line-height: 1.5;
+      padding: 1vh 1.5vh;
+      font-size: 0.95em;
+      font-family: inherit;
+      line-height: 1.6;
+      color: var(--text-color);
+      background: #1e1e1e;
+      /* 与 li、input 保持一致 */
+      border: 0.2vh solid var(--border-color);
+      border-radius: 4px;
       box-sizing: border-box;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     }
 
     #manualInput:focus {
-      border-color: #4a90e2;
-      box-shadow: 0 0 4px rgba(74, 144, 226, 0.4);
+      border-color: var(--brand-color);
+      background: #222;
+      /* 聚焦时稍微提亮 */
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
       outline: none;
     }
   </style>
@@ -303,9 +315,9 @@
 
         <!-- 新增 -->
         <div class="add-tip">
-          <textarea id="manualInput" rows="4" placeholder="Enter new tips"></textarea>
+          <textarea id="manualInput" rows="20" placeholder="Enter new tips"></textarea>
           <button id="addBtn">Add Tip</button>
-          <small>Example: "Always test your code before deploying"</small>
+          <a href="https://github.com/OwnderDuck/TipPop/blob/main/examples.md" target="_blank">examples</a>
         </div>
       </div>
     </div>
