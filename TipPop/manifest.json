@@ -6,7 +6,6 @@
   "permissions": [
     "storage"
   ],
-  "key":"lobajalbgdppnmcbooojnfdljgijdilj",
   "action": {
     "default_icon": {
       "16": "TipPop16.png",
