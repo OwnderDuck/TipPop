@@ -7,5 +7,5 @@ Any fool can write code that a computer can understand. Good programmers write c
 Walking on water and developing software from a specification are easy if both are frozen.
 Code never lies, comments sometimes do.
 The best way to get a project done faster is to start sooner.
-It’s not a bug – it’s an undocumented feature.
+It's not a bug – it's an undocumented feature.
 ```
